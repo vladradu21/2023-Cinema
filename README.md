@@ -16,3 +16,9 @@ You can also contribute your own rating!
 
 Every movie has its own popularity, which is indicated by this small add:
 ![image](https://github.com/vladradu21/2023-Cinema/assets/117584846/adb5423c-9b8c-4256-8516-af8878db46cb)
+
+As an admin you can see all the data from the db
+![image](https://github.com/vladradu21/2023-Cinema/assets/117584846/934a1dea-fa9c-476a-92a1-a1922a35ceca)
+
+It even includes statistics of user ratings.
+![image](https://github.com/vladradu21/2023-Cinema/assets/117584846/8c4b5136-b446-4a96-ace3-1242d1b03e93)
