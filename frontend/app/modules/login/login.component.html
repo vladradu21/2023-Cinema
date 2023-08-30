@@ -1,0 +1,66 @@
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-6 col-md-4">
+        <main class="form-signin">
+          <form [formGroup]="loginForm">
+            <div class="text-center mb-4">
+              <img class="mb-4" src="/assets/img/popcorn.png" alt="" width="230" height="230">
+              <h1 class="h3 mb-3 fw-normal">Sign in</h1>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="username" class="form-control" id="floatingUsername" placeholder="username" formControlName="username">
+              <label for="floatingInput">Username</label>
+              <div *ngIf="loginForm.controls['username'].invalid && (loginForm.controls['username'].dirty || loginForm.controls['username'].touched)">
+                <small class="form-text text-danger">Username is required.</small>
+              </div>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="password">
+              <label for="floatingPassword">Password</label>
+              <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
+                <small class="form-text text-danger">Password is required.</small>
+              </div>
+            </div>
+
+            <button class="w-100 btn btn-lg btn-success mb-2" (click)="loginUser()" [disabled]="loginForm.invalid">Login</button>
+            <button class="w-100 btn btn-lg btn-secondary mb-2" routerLink="/register">Register Now</button>
+            <button class="w-100 btn btn-lg btn-outline-info mb-2" (click)="openSendEmailModal()">Recover Password</button>
+
+          </form>
+        </main>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+<br>
+<app-footer></app-footer>
+
+<!-- Send Email Modal -->
+<div class="modal fade" id="sendEmailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Send Email</h5>
+      </div>
+      <div class="modal-body">
+        <h3> This will sent the password via email.</h3>
+        <form>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" [(ngModel)]="searchEmail" name="email" required>
+          </div>
+        </form>
+        <h5 style="text-align: right;">Are you sure?</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeSendEmailModal()">No</button>
+        <button type="button" class="btn btn-info" (click)="confirmSendEmailModal()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>

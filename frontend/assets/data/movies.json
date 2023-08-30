@@ -1,0 +1,100 @@
+[{
+  "title": "The Dark Knight",
+  "genres": ["Action", "Crime", "Drama"],
+  "year": 2008,
+  "ratings": [
+    {
+      "title": "IMDb",
+      "score": 9.0,
+      "description": "The Dark Knight, A gritty and complex superhero movie."
+    },
+    {
+      "title": "Rotten Tomatoes",
+      "score": 9.4,
+      "description": "The Dark Knight, A thrilling and intelligent crime drama."
+    }
+  ],
+  "score": 9.0,
+  "actors": [
+    {
+      "name": "Christian Bale",
+      "age": 48,
+      "gender": "MALE",
+      "originCountry": "United Kingdom"
+    },
+    {
+      "name": "Heath Ledger",
+      "age": 35,
+      "gender": "MALE",
+      "originCountry": "Australia"
+    }
+  ],
+  "popularity": 0
+},
+{
+  "title": "The Shawshank Redemption",
+  "genres": ["Drama"],
+  "year": 1994,
+  "ratings": [
+    {
+      "title": "IMDb",
+      "score": 9.3,
+      "description": "The Shawshank Redemption, A powerful and inspiring prison drama."
+    },
+    {
+      "title": "Rotten Tomatoes",
+      "score": 9.1,
+      "description": "The Shawshank Redemption, A timeless and poignant tale of friendship and redemption."
+    }
+  ],
+  "score": 9.3,
+  "actors": [
+    {
+      "name": "Tim Robbins",
+      "age": 63,
+      "gender": "MALE",
+      "originCountry": "United States"
+    },
+    {
+      "name": "Morgan Freeman",
+      "age": 85,
+      "gender": "MALE",
+      "originCountry": "United States"
+    }
+  ],
+  "popularity": 0
+},
+{
+  "title": "Inception",
+  "genres": ["Action", "Adventure", "Sci-Fi"],
+  "year": 2010,
+  "ratings": [
+    {
+      "title": "IMDb",
+      "score": 8.8,
+      "description": "Inception, A mind-bending and visually stunning sci-fi thriller."
+    },
+    {
+      "title": "Rotten Tomatoes",
+      "score": 8.7,
+      "description": "Inception, A stylish and thought-provoking blockbuster that explores the nature of reality."
+    }
+  ],
+  "score": 8.8,
+  "actors": [
+    {
+      "name": "Leonardo DiCaprio",
+      "age": 47,
+      "gender": "MALE",
+      "originCountry": "United States"
+    },
+    {
+      "name": "Tom Hardy",
+      "age": 44,
+      "gender": "MALE",
+      "originCountry": "United Kingdom"
+    }
+  ],
+  "popularity": 0
+}
+]

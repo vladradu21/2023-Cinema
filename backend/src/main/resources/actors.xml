@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<actors>
+    <actor>
+        <age>48</age>
+        <gender>MALE</gender>
+        <id>1</id>
+        <name>Christian Bale</name>
+        <originCountry>United Kingdom</originCountry>
+    </actor>
+    <actor>
+        <age>35</age>
+        <gender>MALE</gender>
+        <id>2</id>
+        <name>Heath Ledger</name>
+        <originCountry>Australia</originCountry>
+    </actor>
+    <actor>
+        <age>63</age>
+        <gender>MALE</gender>
+        <id>3</id>
+        <name>Tim Robbins</name>
+        <originCountry>United States</originCountry>
+    </actor>
+    <actor>
+        <age>85</age>
+        <gender>MALE</gender>
+        <id>4</id>
+        <name>Morgan Freeman</name>
+        <originCountry>United States</originCountry>
+    </actor>
+    <actor>
+        <age>47</age>
+        <gender>MALE</gender>
+        <id>5</id>
+        <name>Leonardo DiCaprio</name>
+        <originCountry>United States</originCountry>
+    </actor>
+    <actor>
+        <age>44</age>
+        <gender>MALE</gender>
+        <id>6</id>
+        <name>Tom Hardy</name>
+        <originCountry>United Kingdom</originCountry>
+    </actor>
+    <actor>
+        <age>55</age>
+        <gender>MALE</gender>
+        <id>7</id>
+        <name>Song Kang-ho</name>
+        <originCountry>South Korea</originCountry>
+    </actor>
+    <actor>
+        <age>41</age>
+        <gender>FEMALE</gender>
+        <id>8</id>
+        <name>Cho Yeo-jeong</name>
+        <originCountry>South Korea</originCountry>
+    </actor>
+    <actor>
+        <age>59</age>
+        <gender>FEMALE</gender>
+        <id>9</id>
+        <name>Jodie Foster</name>
+        <originCountry>United States</originCountry>
+    </actor>
+    <actor>
+        <age>84</age>
+        <gender>MALE</gender>
+        <id>10</id>
+        <name>Anthony Hopkins</name>
+        <originCountry>United Kingdom</originCountry>
+    </actor>
+    <actor>
+        <age>68</age>
+        <gender>MALE</gender>
+        <id>11</id>
+        <name>John Travolta</name>
+        <originCountry>United States</originCountry>
+    </actor>
+    <actor>
+        <age>73</age>
+        <gender>MALE</gender>
+        <id>12</id>
+        <name>Samuel L. Jackson</name>
+        <originCountry>United States</originCountry>
+    </actor>
+    <actor>
+        <age>80</age>
+        <gender>MALE</gender>
+        <id>13</id>
+        <name>Marlon Brando</name>
+        <originCountry>United States</originCountry>
+    </actor>
+    <actor>
+        <age>82</age>
+        <gender>MALE</gender>
+        <id>14</id>
+        <name>Al Pacino</name>
+        <originCountry>United States</originCountry>
+    </actor>
+    <actor>
+        <age>33</age>
+        <gender>FEMALE</gender>
+        <id>55</id>
+        <name>Emma Stone</name>
+        <originCountry>United States</originCountry>
+    </actor>
+    <actor>
+        <age>41</age>
+        <gender>MALE</gender>
+        <id>54</id>
+        <name>Ryan Gosling</name>
+        <originCountry>Canada</originCountry>
+    </actor>
+</actors>

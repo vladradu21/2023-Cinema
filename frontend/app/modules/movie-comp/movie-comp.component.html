@@ -1,0 +1,124 @@
+<!-- As a link -->
+<nav class="navbar navbar-light bg-light fixed-bottom">
+  <a class="navbar-brand" routerLink="/user/{{user?.id}}">BACK</a>
+</nav>
+
+
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-20 col-md-15 mx-auto">
+
+      <h1>{{movie?.title}}</h1>
+      <img src="/assets/img/cinema3.jpg" class="card-img-top" alt="..." style="transform: scale(0.8);">
+
+      <div class="row justify-content-center">
+        <div class="col-sm-4" *ngFor="let actor of movie?.actors">
+          <div class="card text-center">
+            <div class="card-body">
+              <h3>{{actor?.name}}</h3>
+              <img src="/assets/img/popcorn.png" class="card-img-top" alt="..." style="transform: scale(0.5);">
+              <p>Age: {{actor?.age}}</p>
+              <p>Gender: {{actor?.gender}} </p>
+              <p>Origin Country: {{actor?.originCountry}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <p class="lead text-body-secondary">Genres: {{movie?.genres}}</p>
+      <p class="lead text-body-secondary">Year: {{movie?.year}}</p>
+      <p class="lead text-body-secondary">Score: {{movie?.score}}</p>
+      <br>
+
+      <div class="row justify-content-center">
+        <h1>Ratings</h1>
+        <div class="col-sm-4" *ngFor="let rating of movie?.ratings">
+          <div class="card text-center">
+            <div class="card-body">
+              <h3>{{rating?.title}}</h3>
+              <p>Score: {{rating?.score}}</p>
+              <p>Description: {{rating?.description}}</p>
+            </div>
+            <div class="card-footer text-muted">
+              2 days ago rating id:{{rating.id}}
+            </div>
+          </div>
+        </div>
+
+
+        <h1> <br> Your Ratings</h1>
+        <p>
+          <button type="button" class="btn btn-success my-2" (click)="openAddRatingModal()">Add Rating</button>
+        </p>
+        <div class="col-sm-4" *ngFor="let rating of user?.ratings">
+          <div class="card text-center">
+            <div class="card-body">
+              <h3>{{rating?.title}}</h3>
+              <p>Score: {{rating?.score.toFixed(2)}}</p>
+              <p>Description: {{rating?.description}}</p>
+              <p>
+                <button type="button" class="btn btn-danger my-2" (click)="openDeleteRatingModal(rating.id)">Delete Rating</button>
+              </p>
+            </div>
+            <div class="card-footer text-muted">
+              2 days ago
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Add Rating Modal -->
+<div class="modal fade" id="addRatingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Rating</h5>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" [(ngModel)]="newRating.title" name="title">
+          </div>
+          <div class="form-group">
+            <label for="score">Score</label>
+            <input type="number" class="form-control" id="score" [(ngModel)]="newRating.score" name="score">
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" [(ngModel)]="newRating.description" name="description"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeAddRatingModal()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="confirmAddRatingModal()">Save Rating</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Rating Modal -->
+<div class="modal fade" id="deleteRatingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Rating</h5>
+      </div>
+      <div class="modal-body">
+        <h1> Are you sure you want to delete this Rating?</h1>
+        <p class="card-text"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="closeDeleteRatingModal()">No</button>
+        <button type="button" class="btn btn-success" (click)="confirmDeleteRatingModal()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>

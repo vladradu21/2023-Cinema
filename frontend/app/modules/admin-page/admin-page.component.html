@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Movie List</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" integrity="sha512-DuT7V/UeN8kQ7/3qfsuvy9ITnGUNov1u/7wUZm6cZk6UvEJPbCHcaGRJy47iYYqwC6d92r8rI6wKUOAMaUbd7g==" crossorigin="anonymous" referrerpolicy="no-referrer" type="text/css" />
+
+</head>
+
+<body>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="search-hero">
+        <div class="d-flex">
+          <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText"/>
+          <button class="btn btn-primary ml-auto" (click)="openAddMovieModal()">Add Movie</button>
+          <button class="btn btn-secondary ml-auto" (click)="openGenerateXMLModal()">Genererate XML report</button>
+        </div>
+      </div>
+
+      <table class="table table-striped custab mx-auto">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Genres</th>
+            <th>Year</th>
+            <th>Score</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let movie of movies | filter:searchText">
+            <td>{{ movie.id }}</td>
+            <td>{{ movie.title }}</td>
+            <td>{{ movie.genres }}</td>
+            <td>{{ movie.year }}</td>
+            <td>{{ movie.score }}</td>
+            <td>
+              <button class="btn btn-success btn-sm" (click)="openViewMovieModal(movie.id)">View</button>
+              <button class="btn btn-warning btn-sm" (click)="openEditMovieModal(movie.id)">Edit</button>
+              <button class="btn btn-danger btn-sm" (click)="openDeleteMovieModal(movie.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <br>
+      <table class="table table-striped custab mx-auto">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Admin</th>
+            <th>Last Login</th>
+            <th>User Name</th>
+            <th>Password</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.admin }}</td>
+            <td>{{ user.lastLogin }}</td>
+            <td>{{ user.username }}</td>
+            <td style="max-width: 400px; overflow: auto;">{{ user.password }}</td>
+            <td>
+              <button class="btn btn-danger btn-sm" (click)="openDeleteUserModal(user.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="col-md-6 mx-auto">
+        <h3 style="text-align: center;">Users Ratings Activity</h3>
+        <canvas id="myChart"></canvas>
+      </div>
+
+    </div>
+  </div>
+
+<!-- View Movie Modal -->
+<div class="modal fade" id="viewMovieModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Movie Description</h5>
+      </div>
+      <div class="modal-body">
+        <div class="card">
+          <img src="/assets/img/cinema3.jpg" class="card-img-top" alt="...">
+
+          <div class="card-body">
+            <h5 class="card-title">{{selectedMovie?.title}}</h5>
+            <p class="card-text">Actors:
+              <span *ngFor="let actor of selectedMovie?.actors; let last = last">
+                {{ actor.name }}{{ last ? '' : ', ' }}
+              </span>
+            </p>
+            <p class="card-text">Genre: {{selectedMovie?.genres}}</p>
+            <p class="card-text">Year: {{selectedMovie?.year}}</p>
+            <p class="card-text">Ratings:
+              <span *ngFor="let rating of selectedMovie?.ratings; let last = last">
+                {{ rating.score }}{{ last ? '' : ', ' }}
+              </span>
+            </p>
+            <p class="card-text">Score: {{selectedMovie?.score}}</p>
+            <p class="card-text"><small class="text-muted">I'll modify this later</small></p>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="closeViewMovieModal()">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Movie Modal -->
+<div class="modal fade" id="editMovieModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Movie</h5>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" [(ngModel)]="selectedMovie.title" name="title" *ngIf="selectedMovie">
+          </div>
+          <div class="form-group">
+            <label for="actors">Actors</label>
+            <textarea class="form-control" id="actors" [(ngModel)]="selectedMovie.actors" name="actors" *ngIf="selectedMovie">{{getActorsAsJson()}}</textarea>
+          </div>
+          <div class="form-group">
+            <label for="genres">Genres</label>
+            <input type="text" class="form-control" id="genres" [(ngModel)]="selectedMovie.genres" name="genres" *ngIf="selectedMovie" [value]="selectedMovie.genres">
+          </div>
+          <div class="form-group">
+            <label for="year">Year</label>
+            <input type="number" class="form-control" id="year" [(ngModel)]="selectedMovie.year" name="year" *ngIf="selectedMovie" [value]="selectedMovie.year">
+          </div>
+          <div class="form-group">
+            <label for="ratings">Ratings</label>
+            <textarea class="form-control" id="ratings" [(ngModel)]="selectedMovie.ratings" name="ratings" *ngIf="selectedMovie">{{getRatingAsJson()}}</textarea>
+          </div>
+          <div class="form-group">
+            <label for="score">Score</label>
+            <input type="number" class="form-control" id="score" [(ngModel)]="selectedMovie.score" name="score" *ngIf="selectedMovie" [value]="selectedMovie.score" disabled>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeEditMovieModal()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="saveEditMovieModal()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Movie Modal -->
+<div class="modal fade" id="deleteMovieModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Movie</h5>
+      </div>
+      <div class="modal-body">
+        <h1> Are you sure you want to delete this movie?</h1>
+        <p class="card-text">{{selectedMovie?.title}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="closeDeleteMovieModal()">No</button>
+        <button type="button" class="btn btn-success" (click)="confirmDeleteMovie()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Movie Modal -->
+<div class="modal fade" id="addMovieModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Movie</h5>
+        <button type="button" class="btn-close" (click)="closeAddMovieModal()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="message-text" class="col-form-label">please use the json format for adding a movie</label>
+          <textarea #movieTextArea class="form-control" id="message-text" rows="15"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="confirmAddMovieModal()">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Generate XML Modal -->
+<div class="modal fade" id="generateXMLModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Import File Modal</h5>
+      </div>
+      <div class="modal-body">
+        <p>This will Genereate a XML report of the users.</p>
+        <p>Are you sure you want to do that?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeGenerateXMLModal()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="confirmGenerateXMLModal()">Generate</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete User Modal -->
+<div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
+      </div>
+      <div class="modal-body">
+        <h1> Are you sure you want to delete this user?</h1>
+        <p class="card-text">{{selectedUser?.name}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="closeDeleteUserModal()">No</button>
+        <button type="button" class="btn btn-success" (click)="confirmDeleteUserModal()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js" integrity="sha512-Yz0E+kLsFg+qQL3CScZOGn/tyhJg/TTfNGb+RcqyXhGG+w/u8NQJbgClWRZshB+ZKfJ4c4xWk84mJ5+9/m5JzQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</body>
+
+</html>
+
+<app-footer></app-footer>
+
+

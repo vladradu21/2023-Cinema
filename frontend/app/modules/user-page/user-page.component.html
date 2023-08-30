@@ -1,0 +1,81 @@
+<nav class="navbar navbar-light bg-light justify-content-center">
+  <div>
+    <p>Hi {{user?.name}}!</p>
+  </div>
+</nav>
+
+<app-notification></app-notification>
+
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">Movies</h1>
+      <p class="lead text-body-secondary">Movies, also known as motion pictures, are a popular form of entertainment that use moving images to tell stories and convey emotions.</p>
+    </div>
+  </div>
+</section>
+
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+
+      <div class="d-flex justify-content-center mb-3">
+        <select class="form-select form-select-sm" [(ngModel)]="selectedSortOption" (ngModelChange)="sortMovies()" aria-label="Default select example" style="max-width: 200px;">
+          <option value="0" selected>Sort movies by:</option>
+          <option value="1">Sort By Title: Asc</option>
+          <option value="2">Sort By Title: Desc</option>
+          <option value="3">Sort By Score: Asc</option>
+          <option value="4">Sort By Score: Desc</option>
+        </select>
+
+        <div class="btn-group ms-3">
+          <button type="button" class="btn btn-sm btn-outline-success" (click)="getMovies()">All Movies</button>
+          <button type="button" class="btn btn-sm btn-outline-danger" (click)="seeFavoriteMovies()">See Favorites List</button>
+          <button type="button" class="btn btn-sm btn-outline-warning" (click)="seeToWatchMovies()">See Watchlist</button>
+          <button type="button" class="btn btn-sm btn-outline-info" (click)="seePopularMovies()">Popular Movies</button>
+        </div>
+      </div>
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        <div class="card" *ngFor="let movie of movies">
+
+          <img src="/assets/img/oldtv.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{ movie.title }}</h5>
+            <p class="card-text">Actors:
+              <span *ngFor="let actor of movie.actors; let last = last">
+                {{ actor.name }}{{ last ? '' : ', ' }}
+              </span>
+            </p>
+            <p class="card-text">Genre: {{ movie.genres }}</p>
+            <p class="card-text">Year: {{ movie.year }}</p>
+            <p class="card-text">Ratings:
+              <span *ngFor="let rating of movie.ratings; let last = last">
+                {{ rating.score }}{{ last ? '' : ', ' }}
+              </span>
+            </p>
+
+            <p class="card-text">Score: {{ movie.score }}</p>
+            <p class="card-text">Popularity: {{ movie.popularity }}</p>
+            <p class="card-text"><small class="text-muted">I'll modify this later</small></p>
+
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-outline-success" routerLink="/movie/{{user?.id}}/{{movie?.id}}">View</button>
+
+              <button type="button" class="btn btn-sm {{isFavorite(movie?.id) ? 'btn-danger' : 'btn-outline-danger'}}" (click)="checkIfFavoriteMovie(movie.id)">
+                {{isFavorite(movie.id) ? 'Remove From Favorites' : 'Add To Favorites'}}
+              </button>
+
+              <button type="button" class="btn btn-sm {{isWatched(movie?.id) ? 'btn-warning' : 'btn-outline-warning'}}" (click)="checkToWatchdMovie(movie.id)">
+                {{isWatched(movie.id) ? 'Remove From Watchlist' : 'Add To Watchlist'}}
+            </button>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+<app-footer></app-footer>

@@ -1,0 +1,63 @@
+{
+    "title": "The Godfather",
+    "genres": ["Drama", "Crime"],
+    "year": 1972,
+    "actors": [
+        {
+            "name": "Marlon Brando",
+            "age": 80,
+            "gender": "MALE",
+            "originCountry": "United States"
+        },
+        {
+            "name": "Al Pacino",
+            "age": 82,
+            "gender": "MALE",
+            "originCountry": "United States"
+        }
+    ]
+}
+{
+    "title": "Inception",
+    "genres": ["Action", "Sci-Fi"],
+    "year": 2010,
+    "actors": [
+        {
+            "name": "Leonardo DiCaprio",
+            "age": 47,
+            "gender": "MALE",
+            "originCountry": "United States"
+        },
+        {
+            "name": "Ellen Page",
+            "age": 35,
+            "gender": "FEMALE",
+            "originCountry": "Canada"
+        },
+        {
+            "name": "Tom Hardy",
+            "age": 44,
+            "gender": "MALE",
+            "originCountry": "United Kingdom"
+        }
+    ]
+}
+{
+    "title": "The Shawshank Redemption",
+    "genres": ["Drama"],
+    "year": 1994,
+    "actors": [
+        {
+            "name": "Tim Robbins",
+            "age": 63,
+            "gender": "MALE",
+            "originCountry": "United States"
+        },
+        {
+            "name": "Morgan Freeman",
+            "age": 84,
+            "gender": "MALE",
+            "originCountry": "United States"
+        }
+    ]
+}

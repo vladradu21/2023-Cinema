@@ -1,0 +1,63 @@
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-6 col-md-4">
+        <main class="form-signin">
+          <form [formGroup]="registerForm">
+            <div class="text-center mb-4">
+              <img class="mb-4" src="/assets/img/popcorn.png" alt="" width="230" height="230">
+              <h1 class="h3 mb-3 fw-normal">Create new account</h1>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="floatingEmail" placeholder="email" formControlName="email">
+              <label for="floatingInput">Email</label>
+              <div *ngIf="registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)">
+                <small class="form-text text-danger">Email is required.</small>
+              </div>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="name" class="form-control" id="floatingName" placeholder="name" formControlName="name">
+              <label for="floatingInput">Name</label>
+              <div *ngIf="registerForm.controls['name'].invalid && (registerForm.controls['name'].dirty || registerForm.controls['name'].touched)">
+                <small class="form-text text-danger">Name is required.</small>
+              </div>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="username" class="form-control" id="floatingUsername" placeholder="username" formControlName="username">
+              <label for="floatingInput">Username</label>
+              <div *ngIf="registerForm.controls['username'].invalid && (registerForm.controls['username'].dirty || registerForm.controls['username'].touched)">
+                <small class="form-text text-danger">Username is required.</small>
+              </div>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="password">
+              <label for="floatingPassword">Password</label>
+              <div *ngIf="registerForm.controls['password'].invalid && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)">
+                <small class="form-text text-danger">Password is required.</small>
+              </div>
+            </div>
+
+            <div>
+              <button class="w-100 btn btn-lg btn-success" (click)="registerNow()" [disabled]="registerForm.invalid">Register Now</button>
+            </div>
+
+          </form>
+
+          <div class="checkbox mb-3">
+            <label>
+              <input type="checkbox" [(ngModel)]="isAdmin" name="isAdmin"> admin account
+            </label>
+          </div>
+
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <app-footer></app-footer>
+</body>
